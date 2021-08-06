@@ -1,0 +1,16 @@
+name: money-manager
+root: .
+
+on_project_stop: >
+  tmux send-keys -t money-manager:0.0 C-c exit Enter
+  tmux send-keys -t money-manager:0.1 C-c exit Enter
+
+attach: false
+
+windows:
+  - server:
+      root: .
+      layout: even-horizontal
+      panes:
+        - bundle exec rails s
+        - ./bin/webpack-dev-server
