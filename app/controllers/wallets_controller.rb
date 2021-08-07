@@ -1,5 +1,6 @@
 class WalletsController < ApplicationController
   before_action :set_wallet, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /wallets or /wallets.json
   def index
@@ -64,6 +65,6 @@ class WalletsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def wallet_params
-      params.require(:wallet).permit(:user_id)
+      params.require(:wallet).permit(:name).merge(user_id: current_user.id)
     end
 end
