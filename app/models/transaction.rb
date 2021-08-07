@@ -1,5 +1,6 @@
 class Transaction < ApplicationRecord
   belongs_to :wallet
+  belongs_to :user
 
   enum type: { income: "INCOME", outcome: "OUTCOME" }
 
