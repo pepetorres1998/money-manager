@@ -2,7 +2,7 @@ class Transaction < ApplicationRecord
   belongs_to :wallet
   belongs_to :user
 
-  enum type: { income: "INCOME", outcome: "OUTCOME" }
+  enum transaction_type: { income: "INCOME", outcome: "OUTCOME" }
 
   before_save :change_amount_value, if: :outcome?
 

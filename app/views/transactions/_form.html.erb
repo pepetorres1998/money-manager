@@ -1,4 +1,4 @@
-<%= form_with(model: transaction) do |form| %>
+<%= form_with(model: [:wallet, transaction]) do |form| %>
   <% if transaction.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
@@ -12,8 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :wallet_id %>
-    <%= form.text_field :wallet_id %>
+    <%= form.label :transaction_type %>
+    <%= form.select :transaction_type, Transaction.transaction_types.keys.map(&:upcase) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :amount %>
+    <%= form.number_field :amount, step: :any %>
   </div>
 
   <div class="actions">
